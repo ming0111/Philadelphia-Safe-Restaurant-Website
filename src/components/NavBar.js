@@ -12,7 +12,7 @@ function NavBar() {
                 <Typography variant="h6" component={Link} to="/" sx={{ color: 'inherit', textDecoration: 'none' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <img src={logo} alt="Logo" style={{ marginRight: 10, maxHeight: '50px' }} />
-                        Philadelphia Restaurants
+                        Philasaferest
                     </Box>
                 </Typography>
 
