@@ -107,7 +107,7 @@ export default function SafetyRankingPage() {
         </Grid>
         
         <Grid item xs={4}>
-          <p>Radius</p>
+          <p>Radius(m)</p>
           <Slider
             value={radius}
             min={10}
@@ -159,7 +159,7 @@ export default function SafetyRankingPage() {
         </Grid>
         
         <Grid item xs={6}>
-          <p>Radius</p>
+          <p>Radius(m)</p>
           <Slider
             value={radius2}
             min={10}
