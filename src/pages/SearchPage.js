@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Button, Container, Grid, Link, Slider, TextField } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
+import Tooltip from '@mui/material/Tooltip';
+
 
 import RestaurantCard from '../components/RestaurantCard';
 const config = require('../config.json');
@@ -10,12 +12,12 @@ export default function SafetyRankingPage() {
   const [data, setData] = useState([]);
   const [selectedRestaurantId, setSelectedRestaurantId] = useState(null);
   
-  const [keyword, setKeyWord] = useState(''); 
+  const [keyword, setKeyWord] = useState('chinese'); 
   const [star, setStar] = useState([0.0, 5.0]); 
   const [incidentcount, setIncidentCount] = useState([0, 8574]); 
 
   const [databyname, setDataByName] = useState([]);
-  const [resname, setResName] = useState(''); 
+  const [resname, setResName] = useState('Starbucks'); 
   
 
   useEffect(() => {
@@ -70,8 +72,20 @@ export default function SafetyRankingPage() {
 
 
   const columnsbyname = [
-    { field: 'Source', headerName: 'Attitude', width: 600 },
-    { field: 'text', headerName: 'Review Content', width: 600 },
+    { field: 'Source', headerName: 'Attitude', width: 150 },
+    // { field: 'text', headerName: 'Review Content', width: 1000 },
+    { 
+      field: 'text', 
+      headerName: 'Review Content', 
+      width: 1000,
+      renderCell: (params) => (
+        <div style={{ whiteSpace: 'normal', lineHeight: 'normal' }}>
+          <Tooltip title={params.value}>
+            <div>{params.value}</div>
+          </Tooltip>
+        </div>
+      ),
+    },
   ];
 
 
@@ -80,6 +94,9 @@ export default function SafetyRankingPage() {
     <Container>
       {selectedRestaurantId && <RestaurantCard businessId={selectedRestaurantId} handleClose={() => setSelectedRestaurantId(null)} />}
       <h2> Search Restaurant By Categories</h2>
+      <p>
+      Choose your preferred category keywords (e.g. Chinese, Korean) to find your options! Use this tool to locate places that match your culinary taste. 
+      </p>
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <TextField 
@@ -87,6 +104,7 @@ export default function SafetyRankingPage() {
           type='text'
           value={keyword} 
           onChange={(e) => setKeyWord(e.target.value)} 
+          // placeholder="chinese"
           />
         </Grid>
         <Grid item xs={6}>
@@ -138,6 +156,9 @@ export default function SafetyRankingPage() {
     <div style={{ height: 200, width: '100%' }}></div>
     <Container>
       <h2>Search Reviews By Restaurant</h2>
+      <p>
+      Enter the name of a restaurant to read reviews and see what others think about it! 
+      </p>
       <Grid container spacing={3} direction="column" alignItems="center">
         <Grid item xs={12}>
         <TextField
@@ -146,7 +167,7 @@ export default function SafetyRankingPage() {
             type="text"
             value={resname}
             onChange={(e) => setResName(e.target.value)}
-            placeholder="Search by restaurant name"
+            // placeholder="Starbucks"
             variant="outlined"
         />
         </Grid>

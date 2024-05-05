@@ -72,6 +72,10 @@ export default function SafetyRankingPage() {
     <Container>
       {selectedRestaurantId && <RestaurantCard businessId={selectedRestaurantId} handleClose={() => setSelectedRestaurantId(null)} />}
       <h2>I. Search Restaurant By Geographic Information</h2>
+      <p>
+      Discover the safest restaurants near you by entering geographic coordinates.  
+      </p>
+      <p>Enter your desired radius to find your dining options with their safety ratings.</p>
       <Grid container spacing={6}>
         <Grid item xs={4}>
           <TextField 
@@ -140,6 +144,9 @@ export default function SafetyRankingPage() {
     <Container>
     {selectedRestaurantId && <RestaurantCard businessId={selectedRestaurantId2} handleClose={() => setSelectedRestaurantId(null)} />}
       <h2>II. Search Restaurant By Name</h2>
+      <p>
+      Look up specific restaurants by name to check their safety scores and get detailed location information. 
+      </p>
       <Grid container spacing={6}>
         <Grid item xs={6}>
           <TextField 

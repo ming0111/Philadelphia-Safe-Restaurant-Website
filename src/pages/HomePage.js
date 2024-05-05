@@ -17,43 +17,28 @@ function HomePage() {
 
   // Fetch businesses data
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchAllData() {
       try {
+        // Fetch top businesses
         const response = await fetch(`https://blooming-spire-72569-216cae1093c2.herokuapp.com/search/above_avg`);
-        const data = await response.json();
-        setBusinesses(data);
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
-      }
-    };
+        const businessData = await response.json();
+        setBusinesses(businessData);
 
-    fetchData();
-  }, []);
-  useEffect(() => {
-    const fetchData3 = async () => {
-      try {
-        const response3 = await fetch(`https://blooming-spire-72569-216cae1093c2.herokuapp.com/random`);
-        const data3 = await response3.json();
-        setRandomBusiness(data3);
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
-      }
-    };
-
-    fetchData3();
-  }, []);
-  useEffect(() => {
-    const fetchData2 = async () => {
-      try {
+        // Fetch improvement businesses after top businesses have been fetched
         const response2 = await fetch(`https://blooming-spire-72569-216cae1093c2.herokuapp.com/improvement`);
-        const data2 = await response2.json();
-        setImprovementBusinesses(data2);
+        const improvementData = await response2.json();
+        setImprovementBusinesses(improvementData);
+
+        // Fetch random business after improvement businesses have been fetched
+        const response3 = await fetch(`https://blooming-spire-72569-216cae1093c2.herokuapp.com/random`);
+        const randomData = await response3.json();
+        setRandomBusiness(randomData);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
-    };
-
-    fetchData2();
+    }
+    
+    fetchAllData();
   }, []);
 
 
@@ -170,7 +155,7 @@ function HomePage() {
             Introduction
           </Typography>
           <Typography>
-            This is where we can introduce your website.
+          Our goal is to provide a reliable tool that not only showcases highly rated restaurants but also integrates safety information to ensure a well-rounded dining experience.
           </Typography>
         </Paper>
       </Box>
@@ -198,7 +183,7 @@ function HomePage() {
     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', mt: 4 }}>
       <Box sx={{ width: '100%', maxWidth: '1200px' }}>
         <Typography variant="h5" component="h2" sx={{ textAlign: 'center', mb: 2 }}>
-          Top businesses that have shown consistent year-over-year improvement in customer ratings.
+        Rising Stars in Philadelphia
         </Typography>
         <DataGrid
           rows={improvementBusinesses}
@@ -215,7 +200,7 @@ function HomePage() {
     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', mt: 4 }}>
       <Box sx={{ width: '100%', maxWidth: '1200px' }}>
         <Typography variant="h5" component="h2" sx={{ textAlign: 'center', mb: 2 }}>
-        Random Highly Rated and Safe Restaurant
+        Mystery Pick: Top Safety & Ratings
         </Typography>
         <DataGrid
           rows={randomBusiness}
