@@ -33,8 +33,8 @@ export default function SafetyRankingPage() {
 
   const search = () => {
     fetch(`https://blooming-spire-72569-216cae1093c2.herokuapp.com/search/cat?title=${keyword}` 
-    + `&starLow=${star[0]}&starHigh=${star[1]}` 
-    +`&incidentLow=${incidentcount[0]}&incidentHigh=${incidentcount[1]}`)
+    + `&star_low=${star[0]}&star_high=${star[1]}` 
+    +`&incident_low=${incidentcount[0]}&incident_high=${incidentcount[1]}`)
       .then(res => res.json())
     //   .then(resJson => {
     //     const restaurantWithId = resJson.map((data) => ({id: data.business_id, ...data }));
